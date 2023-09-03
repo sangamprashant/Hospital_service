@@ -1,38 +1,70 @@
-.App {
+*{
+  margin: 0;
+  padding: 0;
+}
+span{
+  color: blueviolet;
+}
+.row{
+  margin: 0;
+  padding: 0;
+}
+.navbar{
+  position: sticky;
+  padding: 0;
+  width: 100%;
+}
+.container-fluid{
+  background-color: rgb(27, 82, 194);
+  width: 100%;
+}
+.nav-link{
+  font-size: 20px;
+  color: aliceblue;
+}
+.navbar-brand{
+  font-size: 30px;
+  color: aliceblue;
+}
+/* hero section */
+.hero{
+  width: 100%;
+  height: 50vh;
+  background-color: rgb(207, 206, 206);
+}
+.hero-container{
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  padding: 10% 0px;
+}
+.hero-title{
+  text-transform: capitalize;
+}
+.hero-description{
+  text-transform: capitalize;
+}
+/* service */
+.service{
+  padding-top: 50px;
+}
+.service-heading{
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.service-heading span{
+  color: violet;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.service-title{
+  text-align: center;
+  font-weight: 700;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.service-logo{
+  text-align: center;
 }
-
-.App-link {
-  color: #61dafb;
+.service .row .col-md-4 .card {
+  background-color: rgb(235, 220, 242);
+  border-radius: 20px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.service .row .col-md-4 .card:hover {
+  background-color: rgb(210, 160, 233);
 }
