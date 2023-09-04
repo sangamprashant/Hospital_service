@@ -1,70 +1,122 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
-span{
+span {
   color: blueviolet;
 }
-.row{
+.row {
   margin: 0;
   padding: 0;
 }
-.navbar{
-  position: sticky;
+.navbar {
+  position: fixed;
   padding: 0;
   width: 100%;
 }
-.container-fluid{
+.container-fluid {
   background-color: rgb(27, 82, 194);
   width: 100%;
 }
-.nav-link{
+.nav-link {
   font-size: 20px;
   color: aliceblue;
 }
-.navbar-brand{
+.navbar-brand {
   font-size: 30px;
   color: aliceblue;
 }
 /* hero section */
-.hero{
+.hero {
   width: 100%;
   height: 50vh;
   background-color: rgb(207, 206, 206);
 }
-.hero-container{
+.hero-container {
   display: grid;
   align-items: center;
   justify-items: center;
   padding: 10% 0px;
 }
-.hero-title{
+.hero-title {
   text-transform: capitalize;
 }
-.hero-description{
+.hero-description {
   text-transform: capitalize;
 }
 /* service */
-.service{
+.service {
   padding-top: 50px;
 }
-.service-heading{
+.heading {
   text-align: center;
+  padding: 20px;
 }
-.service-heading span{
-  color: violet;
-}
-.service-title{
+.service-title {
   text-align: center;
   font-weight: 700;
 }
-.service-logo{
+.service-logo {
   text-align: center;
 }
 .service .row .col-md-4 .card {
-  background-color: rgb(235, 220, 242);
+  background-color: rgba(242, 240, 243, 0.326);
   border-radius: 20px;
 }
 .service .row .col-md-4 .card:hover {
-  background-color: rgb(210, 160, 233);
+  background-color: rgb(208, 207, 209);
+}
+/* about */
+.about {
+  padding-top: 50px;
+}
+.about-image {
+  width: 100%;
+}
+/* contactus */
+.contact {
+  width: 100%;
+  background: rgb(234, 234, 234);
+  padding: 20px;
+}
+.form {
+  margin: 0px 40px;
+  border-radius: 20px;
+  /* width: ; */
+  padding: 20px;
+  background-color: aliceblue;
+}
+.contact-input {
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* footer */
+.footer {
+  background-color: rgb(118, 118, 118);
+  color: aliceblue;
+  width: 100%;
+}
+.footer-container {
+  padding: 20px 20px;
+}
+.footer-title {
+  text-align: center;
+}
+.footer-description {
+  text-align: center;
+}
+/* hospital display */
+.title-hospital{
+  text-transform: capitalize;
+}
+.description-hospital{
+  text-transform: capitalize;
 }
