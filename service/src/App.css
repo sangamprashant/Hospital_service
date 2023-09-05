@@ -12,6 +12,7 @@ span {
 .navbar {
   position: fixed;
   padding: 0;
+  z-index: 1;
   width: 100%;
 }
 .container-fluid {
@@ -84,7 +85,7 @@ span {
   border-radius: 20px;
   /* width: ; */
   padding: 20px;
-  background-color: aliceblue;
+  background-color: #f5f5f5;
 }
 .contact-input {
   width: 100%;
@@ -114,9 +115,23 @@ span {
   text-align: center;
 }
 /* hospital display */
+.hospitals{
+  margin-bottom: 20px;
+}
+.preview-hospital{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .title-hospital{
   text-transform: capitalize;
+  text-align: center;
 }
 .description-hospital{
   text-transform: capitalize;
+  text-align: left;
+}
+.image-hospital{
+  border-radius: 5px;
+  width: 100%;
 }

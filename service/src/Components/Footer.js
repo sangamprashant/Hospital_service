@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="footer">
+    <div className="footer ssc-square" style={{color:"black"}}>
       <div className="footer-container">
         <div className="row">
             <div className="col-md-4">

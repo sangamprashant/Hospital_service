@@ -13,7 +13,6 @@ function Home() {
       <AboutUs/>
       <Ourhospitals/>
       <ContactUs/>
-      
     </div>
   )
 }
