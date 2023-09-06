@@ -1,12 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function Navbar() {
+
+function Navbar({isSearch,setIsSearch}) {
+  const navigate = useNavigate()
+
+const handelSearch =()=>{
+  setIsSearch(true);
+  navigate("/search/hospital")
+}
+
   return (
     <nav className="navbar navbar-expand-lg ">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-        Hospital Service
+          Hospital Service
         </Link>
         <button
           className="navbar-toggler"
@@ -21,19 +29,29 @@ function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
+          {<div className="nav-search">
+            {!isSearch?<input placeholder="Search here.." onClick={handelSearch}/>:
+          <input className="hidden-input-bar" disabled placeholder="Search Container"/>}
+          </div>
+            }
             <Link className="nav-item" to="/home">
-              <a className="nav-link " aria-current="page" >
-                Home
+              <a className="nav-link " aria-current="page">
+                TODO
               </a>
             </Link>
             <li className="nav-item">
               <a className="nav-link" href="#">
-                Features
+              TODO HospitalLogin
               </a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
-                Pricing
+              TODOApply for hospital
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+              TODO LogOut
               </a>
             </li>
           </ul>

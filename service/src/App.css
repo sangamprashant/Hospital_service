@@ -3,7 +3,16 @@
   padding: 0;
 }
 span {
-  color: blueviolet;
+  color: #113172;
+}
+a{
+  text-decoration: none;
+}
+h5{
+  text-align: center;
+}
+.all-caps{
+  text-transform: capitalize;
 }
 .row {
   margin: 0;
@@ -16,7 +25,7 @@ span {
   width: 100%;
 }
 .container-fluid {
-  background-color: rgb(27, 82, 194);
+  background-color:#113172;
   width: 100%;
 }
 .nav-link {
@@ -134,4 +143,53 @@ span {
 .image-hospital{
   border-radius: 5px;
   width: 100%;
+}
+
+/* search icon */
+.nav-search input{
+  border-radius: 50px;
+  height: 100%;
+  border: none;
+  padding-left: 20px;
+}
+.hidden-input-bar{
+  background-color: #113172;
+  border: none;
+}
+.search-container{
+  padding-top: 50px;
+}
+.search-header{
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  padding: 10px 0px;
+  background-color: white;
+}
+.search-inputs{
+  width: 100%;
+  padding:5px;
+  border-radius: 10px;
+  text-transform: capitalize;
+  border: none;
+  background-color: #e4e4e4;
+}
+.search-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+.search-button button{
+  padding:5px 50px;
+  border-radius: 10px;
+  background-color: #113172;
+  color: white;
+}
+.search-body{
+  margin-top: 120px;
+}
+.searched-image{
+  width: 100%;
+  border-radius: 10px;
 }

@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Hero from './Home/Hero'
 import Service from './Home/Service'
 import AboutUs from './Home/AboutUs'
 import ContactUs from './Home/ContactUs'
 import Ourhospitals from './Home/Ourhospitals'
 
-function Home() {
+function Home({ isSearch, setIsSearch }) {
+  useEffect(() => {
+    setIsSearch(false);
+  });
   return (
     <div>
       <Hero/>
