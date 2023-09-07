@@ -16,13 +16,11 @@ app.use(cors());
 
 app.use(express.json());
 
-// require("./models/Application");
-// require("./models/User");
-// require("./models/WorkOrder");
+require("./models/Hospital");
+require("./models/Admin");
 
-// app.use(require("./routes/Application"));
-// app.use(require("./routes/User"));
-// app.use(require("./routes/WorkOrder"));
+app.use(require("./routes/Hospital"));
+app.use(require("./routes/Admin"));
 
 mongoose.connect(process.env.MONGO_URL);
 mongoose.connection.on("connected", () => {
@@ -32,17 +30,17 @@ mongoose.connection.on("error", () => {
   console.log("Failed to connect to mongo");
 });
 // Serve the frontend
-// app.use(express.static(path.join(__dirname, "pms/build")));
-// app.get("*", (req, res) => {
-//   res.sendFile(
-//     path.join(__dirname, "pms/build/index.html"),
-//     function (err) {
-//       if (err) {
-//         res.status(500).send(err);
-//       }
-//     }
-//   );
-// });
+app.use(express.static(path.join(__dirname, "service/build")));
+app.get("*", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "service/build/index.html"),
+    function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
+});
 
 http.listen(PORT, () => {
   console.log("Server is listening on " + PORT);

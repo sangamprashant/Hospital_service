@@ -30,13 +30,13 @@ const handelSearch =()=>{
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
           {<div className="nav-search">
-            {!isSearch?<input placeholder="Search here.." onClick={handelSearch}/>:
+            {!isSearch?<input className="clickable-input" placeholder="Search here.."  onClick={handelSearch}/>:
           <input className="hidden-input-bar" disabled placeholder="Search Container"/>}
           </div>
             }
-            <Link className="nav-item" to="/home">
+            <Link className="nav-item" to="/login">
               <a className="nav-link " aria-current="page">
-                TODO
+                Login
               </a>
             </Link>
             <li className="nav-item">
