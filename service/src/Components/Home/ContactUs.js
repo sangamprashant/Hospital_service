@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-function ContactUs() {
+function ContactUs({ setIsSearch ,isMount }) {
+  useEffect(() => {
+    
+  },[]);
   return (
-    <div className="contact">
-      <div className="contact-container"></div>
+    <div className={`${isMount ? "add-padding" : ""}`}>
+      <div className={`contact`}>
+      <div>
       <h1 className="heading">
-        Contact <span>Developers</span>
+        Contact <span>Us</span>
       </h1>
       <div className="form">
         <div className="row my-3">
@@ -53,6 +57,9 @@ function ContactUs() {
           <button className="btn btn-primary px-3">Submit</button>
         </div>
       </div>
+      </div>
+      
+    </div>
     </div>
   );
 }

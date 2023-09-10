@@ -11,9 +11,9 @@ const handelSearch =()=>{
 }
 
   return (
-    <nav className="navbar navbar-expand-lg ">
+    <nav className="navbar containerNotToPrint navbar-expand-lg ">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to="/" onClick={()=>{setIsSearch(false)}}>
           Hospital Service
         </Link>
         <button
@@ -34,26 +34,47 @@ const handelSearch =()=>{
           <input className="hidden-input-bar" disabled placeholder="Search Container"/>}
           </div>
             }
-            <Link className="nav-item" to="/login">
+            <Link className="nav-item" to="/contact" onClick={()=>{setIsSearch(false)}}>
+              <a className="nav-link " aria-current="page">
+                Contact Us
+              </a>
+            </Link>
+            <Link className="nav-item" to="/register" onClick={()=>{setIsSearch(false)}}>
+              <a className="nav-link " aria-current="page">
+                Register
+              </a>
+            </Link>
+            <Link className="nav-item" to="/login" onClick={()=>{setIsSearch(false)}}>
               <a className="nav-link " aria-current="page">
                 Login
               </a>
             </Link>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-              TODO HospitalLogin
+            {/* admin */}
+            <Link className="nav-item" to="/admin" onClick={()=>{setIsSearch(false)}}>
+              <a className="nav-link " aria-current="page">
+                Admin
               </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-              TODOApply for hospital
+            </Link>
+            <Link className="nav-item" to="/admin/approved" onClick={()=>{setIsSearch(false)}}>
+              <a className="nav-link " aria-current="page">
+               Approved  
               </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-              TODO LogOut
+            </Link>
+            <Link className="nav-item" to="/admin/application" onClick={()=>{setIsSearch(false)}}>
+              <a className="nav-link " aria-current="page">
+                Appplications
               </a>
-            </li>
+            </Link>
+            <Link className="nav-item" to="/admin/profile" onClick={()=>{setIsSearch(false)}}>
+              <a className="nav-link " aria-current="page">
+                Profile
+              </a>
+            </Link>
+            <Link className="nav-item" to="/admin" onClick={()=>{setIsSearch(false)}}>
+              <a className="nav-link " aria-current="page">
+                Log Out
+              </a>
+            </Link>
           </ul>
         </div>
       </div>

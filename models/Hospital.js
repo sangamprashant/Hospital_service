@@ -15,8 +15,9 @@ const hospitalSchema = new mongoose.Schema({
     required: true
   },
   address: String,
-  zipCode: String,
-  phoneNumber: String,
+  image: String,
+  zip: String,
+  phone: String,
   website: String,
   services: [String],
   specializations: [String],
@@ -32,7 +33,9 @@ const hospitalSchema = new mongoose.Schema({
       specialty: String
     }
   ],
-  aboutUs: String
+  aboutUs: String,
+  approved: Boolean,
+  type: String,
 }, {
   timestamps: true // This option adds "createdAt" and "updatedAt" fields
 });

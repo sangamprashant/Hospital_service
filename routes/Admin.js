@@ -22,7 +22,7 @@ router.post('/signup', async (req, res) => {
       const hashedPassword = await bcrypt.hash(password, saltRounds);
   
       // Create a new admin with the hashed password
-      const newAdmin = new Admin({ name, email, password: hashedPassword });
+      const newAdmin = new Admin({ name, email, password: hashedPassword, type:"admin"});
       await newAdmin.save();
   
       res.status(201).json({ message: 'Signup successful' });
@@ -46,7 +46,7 @@ router.post('/api/admin/do/login', async (req, res) => {
       }
   
       // Compare the provided password with the hashed password
-      const isPasswordValid = await bcrypt.compare(password, admin.password);
+      const isPasswordValid = await bcrypt.compare(password, admin.password, );
   
       // If the password is invalid, return an error
       if (!isPasswordValid) {
@@ -60,11 +60,7 @@ router.post('/api/admin/do/login', async (req, res) => {
       res.status(200).json({
         message: 'Login successful',
         token: token,
-        adminDetails: {
-          name: admin.name,
-          email: admin.email,
-          // Include other admin details here as needed
-        },
+        details:admin,
       });
     } catch (error) {
       console.error(error);

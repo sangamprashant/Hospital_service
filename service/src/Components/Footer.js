@@ -2,8 +2,8 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="footer ssc-square" style={{color:"black"}}>
-      <div className="footer-container">
+    <div className="footer containerNotToPrint ssc-square" style={{color:"black"}}>
+      <div className="footer-container containerNotToPrint">
         <div className="row">
             <div className="col-md-4">
                 <h1 className='footer-title'>Welcome To <span>Hospital Service</span></h1>

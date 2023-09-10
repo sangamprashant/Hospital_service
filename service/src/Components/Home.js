@@ -5,10 +5,7 @@ import AboutUs from './Home/AboutUs'
 import ContactUs from './Home/ContactUs'
 import Ourhospitals from './Home/Ourhospitals'
 
-function Home({ isSearch, setIsSearch }) {
-  useEffect(() => {
-    setIsSearch(false);
-  });
+function Home(){
   return (
     <div>
       <Hero/>

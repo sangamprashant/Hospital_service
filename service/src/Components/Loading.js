@@ -12,7 +12,7 @@ function Loading() {
                 <div class="mr w-70">
                   <div
                     class="ssc-square mb"
-                    style={{ height: "200px", zIndex: 0 }}
+                    style={{ zIndex: 0 }}
                   ></div>
                   <div
                     class="ssc-square mb"
@@ -45,7 +45,7 @@ function Loading() {
                 <div class="mr w-70">
                   <div
                     class="ssc-square mb"
-                    style={{ height: "200px", zIndex: 0 }}
+                    style={{  zIndex: 0 }}
                   ></div>
                   <div
                     class="ssc-square mb"
@@ -78,7 +78,7 @@ function Loading() {
                 <div class="mr w-70">
                   <div
                     class="ssc-square mb"
-                    style={{ height: "200px", zIndex: 0 }}
+                    style={{ zIndex: 0 }}
                   ></div>
                   <div
                     class="ssc-square mb"

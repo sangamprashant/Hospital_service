@@ -22,7 +22,11 @@ require("./models/Admin");
 app.use(require("./routes/Hospital"));
 app.use(require("./routes/Admin"));
 
-mongoose.connect(process.env.MONGO_URL);
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  dbName: "hospital_service", // Specify the database name here
+});
 mongoose.connection.on("connected", () => {
   console.log("Connected to mongo");
 });

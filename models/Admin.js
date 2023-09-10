@@ -14,6 +14,7 @@ const hospitalSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  type: String,
 }, {
   timestamps: true // This option adds "createdAt" and "updatedAt" fields
 });
