@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const AdminProfile = ({ title }) => {
+const AdminProfile = () => {
+      // Retrieving data
+  const savedUser = JSON.parse(localStorage.getItem("user"));
+  const savedToken = localStorage.getItem("token");
+  const navigate = useNavigate()
+  useEffect(()=>{
+    if(!savedToken||!savedUser||savedUser.type!=="admin"){
+      toast.error("Wrong authenitcation")
+      navigate("/")
+    }
+
+  },[savedUser])
   return (
     <div className="displaycard">
       <div className="">

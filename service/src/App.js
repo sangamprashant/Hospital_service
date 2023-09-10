@@ -16,19 +16,23 @@ import AdminDashboard from "./Components/Admin/AdminDashboard";
 import AdminPending from "./Components/Admin/AdminPending";
 import AdminApproved from "./Components/Admin/AdminApproved";
 import AdminProfile from "./Components/Admin/AdminProfile";
+import HospitalProfile from "./Components/Hospital/HospitalProfile";
 function App() {
   const [isSearch,setIsSearch] = useState(false);
-  const isMount =true
+  const [logged,setLogged] = useState(false);
+  const isMount =true;
   return (
     <BrowserRouter>
-    
-      <Navbar isSearch={isSearch} setIsSearch={setIsSearch}/>
+      <Navbar isSearch={isSearch} setIsSearch={setIsSearch} setLogged={setLogged} logged={logged}/>
       <Routes>
-      {/* client */}
+        {/* all */}
         <Route path="/" element={<Home isSearch={isSearch} setIsSearch={setIsSearch}  />} />
         <Route path="/contact" element={<ContactUs isMount={isMount} />} />
         <Route path="/register" element={<Register setIsSearch={setIsSearch}/>} />
         <Route path="/search/hospital" element={<Search isSearch={isSearch} setIsSearch={setIsSearch}/>} />
+        {/* client */}
+        <Route path="/:hospitalId" element={<HospitalProfile isSearch={isSearch} setIsSearch={setIsSearch}/>} />
+        
         {/* admin */}
         <Route path="/admin" element={<AdminDashboard/>} />
         <Route path="/admin/application" element={<AdminPending/>} />
@@ -36,7 +40,7 @@ function App() {
         <Route path="/admin/profile" element={<AdminProfile/>} />
 
 
-        <Route path="/login" element={<AdminLogin isSearch={isSearch} setIsSearch={setIsSearch}/>} />
+        <Route path="/login" element={<AdminLogin setLogged={setLogged} logged={logged} />}  />
         <Route path="*" element={<NotFound isSearch={isSearch} setIsSearch={setIsSearch}/>} />
       </Routes>
       <Footer />

@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Loading from "../Loading";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function DisplayCard({ title }) {
   // Define a state variable to hold the hospital data
   const [hospitalData, setHospitalData] = useState([]);
   const [message, setMessage] = useState("Loading...");
+    // Retrieving data
+    const savedUser = JSON.parse(localStorage.getItem("user"));
+    const savedToken = localStorage.getItem("token");
+    const navigate = useNavigate()
+    useEffect(()=>{
+      if(!savedToken||!savedUser||savedUser.type!=="admin"){
+        toast.error("Wrong authenitcation")
+        navigate("/")
+      }
+  
+    },[savedUser])
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/hospitals/${title}`)

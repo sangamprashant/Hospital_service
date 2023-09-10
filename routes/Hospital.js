@@ -47,7 +47,7 @@ router.post('/api/hospital/do/login', async (req, res) => {
         return res.status(401).json({ error: 'Authentication failed passw' });
       }
       // Create a JWT token with the admin's ID as the payload
-      const token = jwt.sign({ adminId: hospital._id }, 'your-secret-key');
+      const token = jwt.sign({ hospitalId: hospital._id }, 'your-secret-key');
       // Send the token and admin details as a response
       res.status(200).json({
         message: 'Login successful',
@@ -82,6 +82,41 @@ router.get('/api/hospitals/application', async (req, res) => {
   } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Server error' });
+  }
+});
+router.get('/api/hospital/:id', async (req, res) => {
+  const {id}= req.params;
+  try {
+      const hospital = await Hospital.findOne({_id:id});
+      res.status(200).json({
+          details:hospital,
+      });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Server error' });
+  }
+});
+router.put('/api/hospital/:hospitalId', async (req, res) => {
+  const hospitalId = req.params.hospitalId;
+  const updatedData = req.body;
+
+  try {
+    // Find the hospital by ID and update its data
+    const updatedHospital = await Hospital.findByIdAndUpdate(
+      hospitalId,
+      updatedData,
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedHospital) {
+      return res.status(404).json({ error: 'Hospital not found' });
+    }
+
+    // Respond with the updated hospital data
+    res.status(200).json({ success: true, updatedHospital });
+  } catch (error) {
+    console.error('Error while updating hospital data:', error);
+    res.status(500).json({ error: 'Failed to update hospital data' });
   }
 });
 module.exports = router;

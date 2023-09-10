@@ -17,8 +17,7 @@ function Ourhospitals() {
     <div className='hospitals'>
       <div className='list-hospital'>
         <h1 className='heading'>List of <span>Hospitals</span></h1>
-        {/* <Loading/> */}
-        <div className='row'>
+        {hospitalData.length!==0?<div className='row'>
           {hospitalData && hospitalData.map((hospital) => (
             <div className='col-md-3' key={hospital.id}>
               <div className='card preview-hospital'>
@@ -28,7 +27,7 @@ function Ourhospitals() {
               </div>
             </div>
           ))}
-        </div>
+        </div>:<Loading/>}
       </div>
     </div>
   );

@@ -2,44 +2,45 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-function AdminLogin({ isSearch, setIsSearch }) {
+function AdminLogin({logged,setLogged}) {
   const [account, setAccount] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setIsSearch(false);
-  }, []);
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if(!account){
+    if (!account) {
       toast.error("Please select a option ");
       return;
     }
-    setError("");
     setLoading(true);
     try {
       // Make an API request to authenticate the user
-      const response = await fetch(`http://localhost:5000/api/${account}/do/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        `http://localhost:5000/api/${account}/do/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
       if (response.ok) {
-        // Authentication successful, redirect or perform any necessary actions
-        // You can also store the user token or data in state or context for future use
+        setLogged(true);
         toast.success("Login successful");
-        if(account==="admin"){
-          navigate("/admin")
-        }else{
-          navigate("/hospital")
+        const data = await response.json();
+        // Saving data
+        localStorage.setItem("user", JSON.stringify(data.details));
+        localStorage.setItem("token", data.token);
+        if (account === "admin") {
+          navigate("/admin");
+        } else {
+          console.log(data.details._id)
+          navigate(`/${data.details._id}`);
         }
       } else {
         const data = await response.json();
@@ -99,7 +100,6 @@ function AdminLogin({ isSearch, setIsSearch }) {
                 {loading ? "Logging in..." : "Submit"}
               </button>
             </div>
-            {error && <div className="text-danger mt-2">{error}</div>}
           </form>
         </div>
       </div>
