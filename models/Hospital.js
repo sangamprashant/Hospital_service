@@ -18,13 +18,17 @@ const hospitalSchema = new mongoose.Schema({
   image: String,
   zip: String,
   phone: String,
+  altphone: String,
   website: String,
   services: [String],
   specializations: [String],
   accreditations: [String],
-  operatingHours: {
-    type: Object
-  },
+  operatingHours: [
+    {
+      day: String,
+      time: String
+    }
+  ],
   insuranceAccepted: [String],
   doctors: [
     {
@@ -33,7 +37,7 @@ const hospitalSchema = new mongoose.Schema({
       specialty: String
     }
   ],
-  aboutUs: String,
+  about: String,
   approved: Boolean,
   type: String,
 }, {

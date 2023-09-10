@@ -39,6 +39,9 @@ h5{
 label{
   word-wrap: break-word;
 }
+sup{
+  color: red;
+}
 .add-padding{
 padding-top: 40px;
 }
@@ -168,6 +171,7 @@ padding-top: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .title-hospital{
   text-transform: capitalize;
@@ -274,9 +278,13 @@ padding-top: 50px;
   align-items: center;
   justify-content: center;
 }
-/* .profile-left > p {
+.profile-left > div {
   width: 100%;
-} */
+}
+
+input {
+  width: -webkit-fill-available;
+}
 .profile-image{
   width: 300px;
   border-radius: 20px;
