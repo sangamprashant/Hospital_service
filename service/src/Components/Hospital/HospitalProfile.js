@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Loading from "../Loading";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import image from "../image/hs.jpg"
 
 const HospitalProfile = () => {
   const [hospital, setHospital] = useState();
@@ -14,6 +15,10 @@ const HospitalProfile = () => {
   const [newOperatingHours, setNewOperatingHours] = useState({
     day: "",
     time: "",
+  });
+  const [newDoctor, setNewDoctor] = useState({
+    name: "",
+    specialty: "",
   });
   const savedUser = JSON.parse(localStorage.getItem("user"));
   const savedToken = localStorage.getItem("token");
@@ -154,7 +159,6 @@ const handleRemoveInsuranceAccepted = (indexToRemove) => {
     insuranceAccepted: updatedInsuranceAccepted,
   });
 };
-// Function to add a new operating hour
 const handleAddOperatingHour = () => {
   if (newOperatingHours.day.trim() !== "" && newOperatingHours.time.trim() !== "") {
     setHospital({
@@ -164,8 +168,6 @@ const handleAddOperatingHour = () => {
     setNewOperatingHours({ day: "", time: "" }); // Clear input fields
   }
 };
-
-// Function to remove an operating hour by index
 const handleRemoveOperatingHour = (indexToRemove) => {
   const updatedOperatingHours = hospital.operatingHours.filter(
     (_, index) => index !== indexToRemove
@@ -175,10 +177,28 @@ const handleRemoveOperatingHour = (indexToRemove) => {
     operatingHours: updatedOperatingHours,
   });
 };
+const handleAddDoctor = () => {
+  if (newDoctor.name.trim() !== "" && newDoctor.specialty.trim() !== "") {
+    setHospital({
+      ...hospital,
+      doctors: [...hospital.doctors, newDoctor],
+    });
+    setNewDoctor({ name: "", specialty: "" }); // Clear input fields
+  }
+};
+const handleRemoveDoctor = (indexToRemove) => {
+  const updatedDoctors= hospital.doctors.filter(
+    (_, index) => index !== indexToRemove
+  );
+  setHospital({
+    ...hospital,
+    doctors: updatedDoctors,
+  });
+};
   return (
     <div className="displaycard">
       <h5 style={{ fontSize: "50px", textTransform: "capitalize" }}>
-        Hospital Profile
+        {hospital?.name||"Loading.."}
       </h5>
       {savedUser?._id===hospitalId&&<div>
           <div className="top-button px-5">
@@ -187,14 +207,14 @@ const handleRemoveOperatingHour = (indexToRemove) => {
           </div>
           <hr/>
       </div>}
-      {hospital && (
+      {hospital ? (
         <div className="py-5">
           <div className="profile-body">
               <div className="row">
                 <div className="col-md-6 profile-left">
                   <img
                     className="profile-image"
-                    src="https://imgs.search.brave.com/ZGsCLKZOvJjnK5sXmt6dnK6SOi27SFULk_eUdmqpfUY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudW5zcGxhc2gu/Y29tL3Bob3RvLTE2/ODI2ODY1ODAwMzYt/YjVlMjU5MzJjZTlh/P2l4bGliPXJiLTQu/MC4zJml4aWQ9TTN3/eE1qQTNmREY4TUh4/bFpHbDBiM0pwWVd3/dFptVmxaSHd4TVh4/OGZHVnVmREI4Zkh4/OGZBPT0mdz0xMDAw/JnE9ODA"
+                    src={hospital?.image||image}
                     alt="hospital image"
                   />
                   <div>
@@ -207,7 +227,6 @@ const handleRemoveOperatingHour = (indexToRemove) => {
                 <div className="col-md-6">
                 <div className="py-2">
                   <p>name:{savedUser?._id===hospitalId&& isEditing&&<sup>*</sup>}</p>
-                    {!isEditing&&<h2>{hospital.name}</h2>}
                     {(savedUser?._id===hospitalId&&isEditing)&&<input className="col-md-12 p-2" placeholder={hospital.name} value={hospital.name} name="name" onChange={handelChange}/>}
                   </div>
                   <div className="py-2">
@@ -245,9 +264,9 @@ const handleRemoveOperatingHour = (indexToRemove) => {
               </div>
           </div>
           <div className="profile-footer">
-            <div className="row">
+            <div className="row my-2">
               {(((isEditing&&savedUser?._id===hospitalId)||hospital.services.length !== 0)) && (
-                <div className="col-md-6">
+                <div className="col-md-6 my-2">
                 <div className="card p-3">
                 <h5>Services</h5>
                   <div className="row">
@@ -296,7 +315,7 @@ const handleRemoveOperatingHour = (indexToRemove) => {
                 </div>
               )}
               {((isEditing&&savedUser?._id===hospitalId)||hospital.specializations.length !== 0) && (
-                <div className="col-md-6">
+                <div className="col-md-6 my-2">
                 <div className="card p-3">
                 <h5>Specializations</h5>
                   <div className="row">
@@ -346,7 +365,7 @@ const handleRemoveOperatingHour = (indexToRemove) => {
                 </div>
               )}
               {((isEditing&&savedUser?._id===hospitalId)||hospital.accreditations.length !== 0) && (
-                <div className="col-md-6">
+                <div className="col-md-6 my-2">
                 <div className="card p-3">
                 <h5>Accreditations</h5>
                   <div className="row">
@@ -396,7 +415,7 @@ const handleRemoveOperatingHour = (indexToRemove) => {
                 </div>
               )}
               {((isEditing&&savedUser?._id===hospitalId)||hospital.insuranceAccepted.length !== 0) && (
-                <div className="col-md-6">
+                <div className="col-md-6 my-2">
                 <div className="card p-3">
                 <h5>insuranceAccepted</h5>
                   <div className="row">
@@ -446,7 +465,7 @@ const handleRemoveOperatingHour = (indexToRemove) => {
                 </div>
               )}
             </div>
-            {((isEditing&&savedUser?._id===hospitalId)||hospital.operatingHours.length !== 0) && (<div className="row px-3"><div className="card">
+            {((isEditing&&savedUser?._id===hospitalId)||hospital.operatingHours.length !== 0) && (<div className="row  p-3"><div className="card my-2 p-3">
               <h5 style={{fontSize:'2rem'}}>Operating Hours</h5>
                 <div>
                   <table className="table">
@@ -502,13 +521,58 @@ const handleRemoveOperatingHour = (indexToRemove) => {
               </div>
             </div>
           )}
-            </div></div>)}
-            
-
-            <Loading />
+            </div>
+            </div>)}
+            {((isEditing&&savedUser?._id===hospitalId)||hospital.doctors.length !== 0) &&(<div className="doctors card p-3 m-2">
+            <h5 style={{fontSize:'2rem'}}>Our Doctors</h5>
+              <div className="row">
+                {hospital.doctors.map((doctor,index)=>(<div className="col-md-3">
+                  <div className="card">
+                    <h5>{doctor.name}</h5>
+                    <h5>{doctor.specialty}</h5>
+                    {(savedUser?._id === hospitalId && isEditing) && (<>
+                      {/* <i className="mx-3" onClick={() => handleRemoveDoctor(index)}>
+                                Edit
+                              </i> */}
+                      <i className="mx-3" onClick={() => handleRemoveDoctor(index)}>
+                                delete
+                              </i>
+                      </>
+                          )}
+                  </div>
+                </div>))}
+              </div>
+              <div className="doctor-input">
+              {(savedUser?._id === hospitalId && isEditing) && (
+            <div className="">
+              <div>
+                <label>Doctor Name:</label>
+                <input
+                  type="text"
+                  placeholder="Enter Day"
+                  value={newDoctor.name}
+                  onChange={(e) => setNewDoctor({ ...newDoctor, name: e.target.value })}
+                />
+              </div>
+              <div>
+                <label>Specialty:</label>
+                <input
+                  type="text"
+                  placeholder="Enter Time"
+                  value={newDoctor.specialty}
+                  onChange={(e) => setNewDoctor({ ...newDoctor, specialty: e.target.value })}
+                />
+              </div>
+              <div>
+                <button onClick={handleAddDoctor}>Add A Doctor</button>
+              </div>
+            </div>
+          )}
+              </div>
+            </div>)}
           </div>
         </div>
-      )}
+      ):<Loading />}
     </div>
   );
 };

@@ -32,7 +32,6 @@ const hospitalSchema = new mongoose.Schema({
   insuranceAccepted: [String],
   doctors: [
     {
-      doctorImage: String,
       name: String,
       specialty: String
     }

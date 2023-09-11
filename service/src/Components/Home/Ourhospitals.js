@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Loading from '../Loading';
 import { useNavigate } from 'react-router-dom';
+import image from "../image/hs.jpg"
 
 function Ourhospitals() {
   // Define a state variable to hold the hospital data
@@ -23,7 +24,7 @@ function Ourhospitals() {
           {hospitalData && hospitalData.map((hospital) => (
             <div className='col-md-3' key={hospital._id}>
               <div className='card preview-hospital' onClick={()=>{navigate(`${hospital._id}`)}}>
-                <img className='image-hospital' src={hospital.image} alt={`Hospital ${hospital.name}`} />
+                <img className='image-hospital' src={hospital.image||image} alt={`Hospital ${hospital.name}`} />
                 <h2 className='title-hospital'>{hospital.name}</h2>
                 <h5 className='description-hospital'>{hospital.address}</h5>
               </div>
