@@ -119,4 +119,35 @@ router.put('/api/hospital/:hospitalId', async (req, res) => {
     res.status(500).json({ error: 'Failed to update hospital data' });
   }
 });
+
+router.post('/api/hospital/searched/public', async (req, res) => {
+  const { name, address } = req.body;
+
+  // Define your search criteria
+  let searchCriteria = {
+    approved: true,
+  };
+
+  if (name) {
+    // Use a regular expression to match partially or by initials
+    const nameRegex = new RegExp(`^${name}`, 'i'); // 'i' for case-insensitive
+    searchCriteria.name = nameRegex;
+  }
+
+  if (address) {
+    // Use a regular expression to match partially or by initials
+    const nameRegex = new RegExp(`^${address}`, 'i'); // 'i' for case-insensitive
+    searchCriteria.address = nameRegex;
+  }
+
+  try {
+    const hospitals = await Hospital.find(searchCriteria);
+    res.status(200).json({details:hospitals,});
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({
+      message: 'Internal server error',
+    });
+  }
+});
 module.exports = router;
