@@ -33,7 +33,7 @@ const HospitalProfile = () => {
 const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/hospital/${hospitalId}`,
+        `/api/hospital/${hospitalId}`,
         {
           method: "GET",
           headers: {
@@ -64,7 +64,7 @@ const handelSave = async () => {
 };
 const saveDataToServer = async () => {
   try {
-    const response = await fetch(`http://localhost:5000/api/hospital/${hospitalId}`, {
+    const response = await fetch(`/api/hospital/${hospitalId}`, {
       method: "PUT", // Use PUT or POST depending on your API endpoint
       headers: {
         "Content-Type": "application/json",

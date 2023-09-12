@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Loading from "./Loading";
 import { toast } from "react-toastify";
-import image from "./image/hs.jpg"
+import image from "./image/pre.jpg"
 import { useNavigate } from "react-router-dom";
 
 function Search({ isSearch, setIsSearch }) {
@@ -23,7 +23,7 @@ function Search({ isSearch, setIsSearch }) {
         setLoading(true);
 
         const response = await fetch(
-          `http://localhost:5000/api/hospital/searched/public`,
+          `/api/hospital/searched/public`,
           {
             method: "POST",
             body: JSON.stringify({ address: inputLocation, name: inputName }),

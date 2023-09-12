@@ -23,7 +23,7 @@ function DisplayCard({ title }) {
   }, [title]);
 
   const handelFetch = () =>{
-    fetch(`http://localhost:5000/api/hospitals/${title}`)
+    fetch(`/api/hospitals/${title}`)
     .then((response) => response.json())
     .then((data) => {
       setHospitalData(data.details);
@@ -36,7 +36,7 @@ function DisplayCard({ title }) {
     try {
       // Make an API request to authenticate the user
       const response = await fetch(
-        `http://localhost:5000/api/hospital/approve/${hospitalId}`,
+        `/api/hospital/approve/${hospitalId}`,
         {
           method: "PUT",
           headers: {
@@ -61,7 +61,7 @@ function DisplayCard({ title }) {
     try {
       // Make an API request to authenticate the user
       const response = await fetch(
-        `http://localhost:5000/api/hospitals/delete/${hospitalId}`,
+        `/api/hospitals/delete/${hospitalId}`,
         {
           method: "DELETE",
           headers: {

@@ -10,7 +10,7 @@ const Register = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/register-hospital", {
+      const response = await fetch("/api/register-hospital", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

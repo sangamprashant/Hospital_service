@@ -9,7 +9,7 @@ function Ourhospitals() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/hospitals/approved')
+    fetch('/api/hospitals/approved')
       .then(response => response.json())
       .then(data => setHospitalData(data.details))
       .catch(error => console.error('Error fetching data: ', error));

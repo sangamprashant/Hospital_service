@@ -20,7 +20,7 @@ function AdminLogin({setLogged}) {
     try {
       // Make an API request to authenticate the user
       const response = await fetch(
-        `http://localhost:5000/api/${account}/do/login`,
+        `/api/${account}/do/login`,
         {
           method: "POST",
           headers: {

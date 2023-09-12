@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Hospital Service - Your Trusted Healthcare Companion
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About Us
 
-## Available Scripts
+Welcome to Hospital Service, your go-to platform for seamless access to critical healthcare services. Our mission is to make it easier for hospitals to register and create detailed digital profiles while ensuring the accuracy and authenticity of the information they provide.
 
-In the project directory, you can run:
+### What Sets Us Apart
 
-### `npm start`
+At Hospital Service, we understand the importance of accurate and up-to-date healthcare information. Here's what sets us apart:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Data Integrity:** Hospitals registering with us go through a meticulous approval process to maintain the highest standards of data accuracy.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Hospital Empowerment:** Approved hospitals gain access to their digital profiles, allowing them to update and modify their details as needed.
 
-### `npm test`
+- **Emergency Assistance:** Our platform is designed to help people find hospitals swiftly during emergencies, ensuring they can access the right medical facility when it matters the most.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Our Mission
 
-### `npm run build`
+Our mission is simple yet profound: to help people find hospitals quickly during times of need. Whether it's a sudden illness or a medical emergency, our platform simplifies the process of locating the nearest and most suitable healthcare facility.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Accessible Healthcare for All
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+At Hospital Service, we believe that everyone should have easy access to the healthcare services they require. Our platform plays a crucial role in making this a reality by connecting individuals with trusted hospitals and healthcare providers.
+## ScreenShots
+- home
+![Screenshot 1](screenshots/Screenshot24.png)
+![Screenshot 1](screenshots/Screenshot25.png)
+![Screenshot 1](screenshots/Screenshot26.png)
+![Screenshot 1](screenshots/Screenshot27.png)
+- Admin dashboard
+![Screenshot 1](screenshots/Screenshot31.png)
+- register
+![Screenshot 1](screenshots/Screenshot28.png)
+- Signin
+![Screenshot 1](screenshots/Screenshot29.png)
+- Search
+![Screenshot 1](screenshots/Screenshot30.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

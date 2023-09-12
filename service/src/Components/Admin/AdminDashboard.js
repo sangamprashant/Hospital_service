@@ -14,7 +14,7 @@ const AdminDashboard = () => {
 
   const handelFetch = async ()=>{
       try {
-        const response = await fetch("http://localhost:5000/api/hospitals/count",
+        const response = await fetch("/api/hospitals/count",
         {
           method: "GET",
         }
