@@ -294,6 +294,10 @@ padding-top: 50px;
 .displaycard{
   padding-top: 70px;
 }
+.approve-btn{
+  cursor: pointer;
+  color: red;
+}
 /* profile */
 .profile-left{
   display: grid;

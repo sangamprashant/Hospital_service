@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Loading from "../Loading";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import image from "../image/hs.jpg"
+import image from "../image/pre.jpg"
 import { storage } from "../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 

@@ -14,7 +14,6 @@ import Register from "./Components/Register";
 import AdminDashboard from "./Components/Admin/AdminDashboard";
 import AdminPending from "./Components/Admin/AdminPending";
 import AdminApproved from "./Components/Admin/AdminApproved";
-import AdminProfile from "./Components/Admin/AdminProfile";
 import HospitalProfile from "./Components/Hospital/HospitalProfile";
 import AboutUs from "./Components/Home/AboutUs";
 function App() {
@@ -38,7 +37,6 @@ function App() {
         <Route path="/admin" element={<AdminDashboard/>} />
         <Route path="/admin/application" element={<AdminPending/>} />
         <Route path="/admin/approved" element={<AdminApproved/>} />
-        <Route path="/admin/profile" element={<AdminProfile/>} />
 
 
         <Route path="/login" element={<AdminLogin setLogged={setLogged} logged={logged} />}  />

@@ -60,17 +60,6 @@ function Navbar({ isSearch, setIsSearch, setLogged, logged }) {
             </Link>
             <Link
               className="nav-item"
-              to="/admin/profile"
-              onClick={() => {
-                setIsSearch(false);
-              }}
-            >
-              <a className="nav-link " aria-current="page">
-                Profile
-              </a>
-            </Link>
-            <Link
-              className="nav-item"
               to="/"
               onClick={() => {
                 handelLogout();

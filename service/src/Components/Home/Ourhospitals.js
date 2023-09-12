@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Loading from '../Loading';
 import { useNavigate } from 'react-router-dom';
-import image from "../image/hs.jpg"
+import image from "../image/pre.jpg"
 
 function Ourhospitals() {
   // Define a state variable to hold the hospital data

@@ -150,4 +150,59 @@ router.post('/api/hospital/searched/public', async (req, res) => {
     });
   }
 });
+router.put('/api/hospital/approve/:hospitalId', async (req, res) => {
+  const hospitalId = req.params.hospitalId;
+
+  try {
+    // Find the hospital by its ID
+    const hospital = await Hospital.findById(hospitalId);
+
+    if (!hospital) {
+      return res.status(404).json({ message: 'Hospital not found' });
+    }
+
+    // Update the approved status
+    hospital.approved = !hospital.approved; // Toggle the approval status
+
+    // Save the updated hospital
+    await hospital.save();
+
+    res.status(200).json({ message: 'Hospital approval status updated successfully', hospital });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({
+      message: 'Internal server error',
+    });
+  }
+});
+// DELETE a hospital by ID
+router.delete('/api/hospitals/delete/:id', async (req, res) => {
+  const hospitalId = req.params.id;
+
+  try {
+    // Find the hospital by ID and remove it from the database
+    const deletedHospital = await Hospital.findByIdAndRemove(hospitalId);
+
+    if (!deletedHospital) {
+      return res.status(404).json({ message: 'Hospital not found' });
+    }
+
+    res.status(200).json({ message: 'Hospital deleted successfully' });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+// GET the count of hospitals with approved set to true and false
+router.get('/api/hospitals/count', async (req, res) => {
+  try {
+    const countApproved = await Hospital.countDocuments({ approved: true });
+    const countNotApproved = await Hospital.countDocuments({ approved: false });
+    const countHospital = await Hospital.countDocuments({ });
+    res.status(200).json({ countApproved, countNotApproved, countHospital });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 module.exports = router;

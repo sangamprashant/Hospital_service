@@ -19,14 +19,69 @@ function DisplayCard({ title }) {
   }, [savedUser]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/hospitals/${title}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setHospitalData(data.details);
-        setMessage(`${title} is empty..`);
-      })
-      .catch((error) => console.error("Error fetching data: ", error));
+    handelFetch();
   }, [title]);
+
+  const handelFetch = () =>{
+    fetch(`http://localhost:5000/api/hospitals/${title}`)
+    .then((response) => response.json())
+    .then((data) => {
+      setHospitalData(data.details);
+      setMessage(`${title} is empty..`);
+    })
+    .catch((error) => console.error("Error fetching data: ", error));
+  }
+
+  const handelChangeStatus = async (hospitalId) =>{
+    try {
+      // Make an API request to authenticate the user
+      const response = await fetch(
+        `http://localhost:5000/api/hospital/approve/${hospitalId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json()
+        toast.success(data.message)
+        handelFetch()
+      } else {
+        const data = await response.json();
+        toast.error(data.error || "Changing status failed.");
+      }
+    } catch (error) {
+      console.error("Error during status change:", error);
+      toast.error("An error occurred during status change.");
+    }
+  }
+  const handelDelete = async (hospitalId) =>{
+    try {
+      // Make an API request to authenticate the user
+      const response = await fetch(
+        `http://localhost:5000/api/hospitals/delete/${hospitalId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json()
+        toast.success(data.message)
+        handelFetch()
+      } else {
+        const data = await response.json();
+        toast.error(data.error || "Changing status failed.");
+      }
+    } catch (error) {
+      console.error("Error during status change:", error);
+      toast.error("An error occurred during status change.");
+    }
+  }
 
   return (
     <div className="displaycard">
@@ -45,6 +100,7 @@ function DisplayCard({ title }) {
                   <th>Phone</th>
                   <th>Address</th>
                   <th>Zip</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -56,6 +112,10 @@ function DisplayCard({ title }) {
                     <td>{hospital.phone}</td>
                     <td>{hospital.address}</td>
                     <td>{hospital.zip}</td>
+                    <td className="">
+                      <a className="approve-btn mx-1" onClick={()=>{handelChangeStatus(hospital._id)}}>👍</a>
+                      <a className="approve-btn mx-1" onClick={()=>{handelDelete(hospital._id)}}>🚮</a>
+                    </td>
                   </tr>
                 ))}
               </tbody>
