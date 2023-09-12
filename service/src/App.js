@@ -6,7 +6,6 @@ import Navbar from "./Components/Navbar";
 import "./App.css";
 import Home from "./Components/Home";
 import Footer from "./Components/Footer";
-import Loading from "./Components/Loading";
 import Search from "./Components/Search";
 import AdminLogin from "./Components/Admin/AdminLogin";
 import NotFound from "./Components/NotFound";
@@ -17,6 +16,7 @@ import AdminPending from "./Components/Admin/AdminPending";
 import AdminApproved from "./Components/Admin/AdminApproved";
 import AdminProfile from "./Components/Admin/AdminProfile";
 import HospitalProfile from "./Components/Hospital/HospitalProfile";
+import AboutUs from "./Components/Home/AboutUs";
 function App() {
   const [isSearch,setIsSearch] = useState(false);
   const [logged,setLogged] = useState(false);
@@ -28,7 +28,8 @@ function App() {
         {/* all */}
         <Route path="/" element={<Home isSearch={isSearch} setIsSearch={setIsSearch}  />} />
         <Route path="/contact" element={<ContactUs isMount={isMount} />} />
-        <Route path="/register" element={<Register setIsSearch={setIsSearch}/>} />
+        <Route path="/about" element={<AboutUs isMount={isMount} />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/search/hospital" element={<Search isSearch={isSearch} setIsSearch={setIsSearch}/>} />
         {/* client */}
         <Route path="/:hospitalId" element={<HospitalProfile isSearch={isSearch} setIsSearch={setIsSearch}/>} />

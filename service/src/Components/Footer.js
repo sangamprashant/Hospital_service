@@ -1,11 +1,12 @@
 import React from "react";
 import logo from "./image/hs.jpg"
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
     <div className="footer containerNotToPrint ssc-square" style={{ color: "black" , height:'max-content', zIndex:"0" }}>
       <div className="footer-container containerNotToPrint">
-        <div className="row">
+        <div className="row footer-content">
           <div className="col-md-5 footer-image-container">
           <div className=" col-md-4 ">
           <div>
@@ -24,22 +25,13 @@ function Footer() {
           </div>
           <div className="col-md-4">
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-md-12">
                 <h3>Useful Links</h3>
                 <ul>
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Search Hospitals</a></li>
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Contact</a></li>
+                  <li><Link to="/">Home</Link></li>
+                  <li><Link to="/about">About Us</Link></li>
+                  <li><Link to="/contact">Contact</Link></li>
                 </ul>
-              </div>
-              <div className="col-md-6">
-                <h3>Contact Us</h3>
-                <address>
-                  <p>Email: info@hospitalservice.com</p>
-                  <p>Phone: +1 (123) 456-7890</p>
-                  <p>Address: 123 Hospital Street, City, Country</p>
-                </address>
               </div>
             </div>
           </div>

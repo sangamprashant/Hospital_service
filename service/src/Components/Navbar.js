@@ -88,7 +88,7 @@ function Navbar({ isSearch, setIsSearch, setLogged, logged }) {
             {/* hospital */}
             <Link
               className="nav-item"
-              to={`/${savedUser._id}`}
+              to={`/${savedUser?._id}`}
               onClick={() => {
                 setIsSearch(false);
               }}
@@ -186,6 +186,17 @@ function Navbar({ isSearch, setIsSearch, setLogged, logged }) {
             >
               <a className="nav-link " aria-current="page">
                 Contact Us
+              </a>
+            </Link>
+            <Link
+              className="nav-item"
+              to="/about"
+              onClick={() => {
+                setIsSearch(false);
+              }}
+            >
+              <a className="nav-link " aria-current="page">
+               About Us
               </a>
             </Link>
             {handelNavbar()}

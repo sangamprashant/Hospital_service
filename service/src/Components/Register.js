@@ -2,25 +2,10 @@ import React, { useEffect, useState } from "react";
 import PrintRegister from "./PrintRegister";
 import { toast } from "react-toastify";
 
-const Register = ({ setIsSearch }) => {
+const Register = () => {
   const [formData, setFormData] = useState({email: "",name: "",phone: "",address: "",zip: "",password:""});
   const [isPrint,setIsPrint] = useState(false);
   
-  useEffect(() => {
-    const generateRandomPassword = () => {
-      const characters ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
-
-      let newPassword = "";
-      for (let i = 0; i < 10; i++) {
-        const randomIndex = Math.floor(Math.random() * characters.length);
-        newPassword += characters.charAt(randomIndex);
-      }
-      setFormData({...formData,password: newPassword,})
-    };
-
-    generateRandomPassword();
-    setIsSearch(false);
-  }, []);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -58,13 +43,25 @@ const Register = ({ setIsSearch }) => {
         <div className="card py-3">
         
           <form onSubmit={handleFormSubmit} className="p-3">
-          {isPrint?<PrintRegister formData={formData} setIsPrint={setIsPrint}/>:
+          {isPrint?<PrintRegister setFormData={setFormData} formData={formData} setIsPrint={setIsPrint}/>:
           <div>
           <h5 style={{ fontSize: "50px" }}>Register</h5>
             <p>
               We will review your application, and then an email will be sent if verification is approved. This can take up to 24 hours.
             </p>
             <p>Thank you for using our platform :)</p>
+            <div className="row my-2">
+              <label className="col-md-12 p-1">Name of hospital</label>
+              <input
+                className="col-md-12 p-1"
+                placeholder="Enter the name"
+                name="name"
+                type="text"
+                required
+                value={formData.name}
+                onChange={handleInputChange}
+              />
+            </div>
             <div className="row my-2">
               <label className="col-md-12 p-1">Email of hospital</label>
               <input
@@ -78,17 +75,17 @@ const Register = ({ setIsSearch }) => {
               />
             </div>
             <div className="row my-2">
-              <label className="col-md-12 p-1">Name of hospital</label>
+              <label className="col-md-12 p-1">Password for hospital</label>
               <input
                 className="col-md-12 p-1"
-                placeholder="Enter the name"
-                name="name"
-                type="text"
+                placeholder="Enter the password"
+                name="password"
+                type="password"
                 required
-                value={formData.name}
+                value={formData.password}
                 onChange={handleInputChange}
               />
-            </div>
+            </div>           
             <div className="row my-2">
               <label className="col-md-12 p-1">Phone number of hospital</label>
               <input

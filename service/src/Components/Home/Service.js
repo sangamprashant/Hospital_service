@@ -7,7 +7,7 @@ function Service() {
         Our <span>Services</span>
       </h1>
       <div className="row">
-        <div className="col-md-4">
+        <div className="col-md-4 my-2">
           <div
             className="card ssc-square p-3"
             style={{
@@ -22,7 +22,7 @@ function Service() {
             <h5 className="service-title">24/7 Availability</h5>
           </div>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-4 my-2">
           <div
             className="card ssc-square p-3"
             style={{
@@ -37,7 +37,7 @@ function Service() {
             <h5 className="service-title">Easy Access</h5>
           </div>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-4 my-2">
           <div
             className="card ssc-square p-3"
             style={{

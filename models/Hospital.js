@@ -16,6 +16,7 @@ const hospitalSchema = new mongoose.Schema({
   },
   address: String,
   image: String,
+  imageType: Boolean,
   zip: String,
   phone: String,
   altphone: String,

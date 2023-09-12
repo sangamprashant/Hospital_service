@@ -20,11 +20,11 @@ function Ourhospitals() {
     <div className='hospitals'>
       <div className='list-hospital'>
         <h1 className='heading'>List of <span>Hospitals</span></h1>
-        {hospitalData.length!==0?<div className='row'>
+        {hospitalData?.length!==0?<div className='row'>
           {hospitalData && hospitalData.map((hospital) => (
             <div className='col-md-3' key={hospital._id}>
               <div className='card preview-hospital' onClick={()=>{navigate(`${hospital._id}`)}}>
-                <img className='image-hospital' src={hospital.image||image} alt={`Hospital ${hospital.name}`} />
+                <img className={`image-hospital ${hospital?.imageType?"circle-image":""}`} src={hospital.image||image} alt={`Hospital ${hospital.name}`} />
                 <h2 className='title-hospital'>{hospital.name}</h2>
                 <h5 className='description-hospital'>{hospital.address}</h5>
               </div>

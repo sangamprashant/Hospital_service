@@ -161,6 +161,10 @@ padding-top: 40px;
   width: 100%;
   height: max-content;
 }
+.footer-content{
+  display: flex;
+  align-items: center;
+}
 .footer-container {
   padding: 20px 20px;
 }
@@ -292,8 +296,10 @@ padding-top: 50px;
 /* profile */
 .profile-left{
   display: grid;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
 }
 .profile-left > div {
   width: 100%;
@@ -308,6 +314,12 @@ input {
   height: 400px;
   object-fit: cover;
 }
+.circle-image{
+  border-radius: 50%;
+}
+.main-card:hover{
+  background: #ececec;
+}
 .top-button{
   display: flex;
   align-items: end;
@@ -320,4 +332,14 @@ input {
 .input-profile{
   width: 100%;
   padding: 5px;
+}
+.table{
+  --bs-table-bg: ;
+}
+.even-row {
+  background-color: #a8afb3; /* Set your desired background color for even rows */
+}
+
+.odd-row {
+  background-color: #ffffff; /* Set your desired background color for odd rows */
 }

@@ -3,11 +3,15 @@ import Loading from "../Loading";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import image from "../image/hs.jpg"
+import { storage } from "../firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const HospitalProfile = () => {
   const [hospital, setHospital] = useState();
   const { hospitalId } = useParams();
   const [isEditing, setIsEditing] = useState(false);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [isCircle, setIsCircle] = useState(true);
   const [newService, setNewService] = useState("");
   const [newSpecializations, setNewSpecializations] = useState("");
   const [newAccreditations, setNewAccreditations] = useState("");
@@ -40,7 +44,7 @@ const fetchData = async () => {
       if (response.ok) {
         const data = await response.json();
         setHospital(data.details);
-        setHospital(data.details);
+        setIsCircle(data.details.imageType);
       } else {
         const data = await response.json();
         toast.error(data.error || "failed to fetch...");
@@ -195,6 +199,32 @@ const handleRemoveDoctor = (indexToRemove) => {
     doctors: updatedDoctors,
   });
 };
+const handleRadioChange = (event) => {
+  const newValue = event.target.value === 'circle';
+  setIsCircle(newValue);
+  setHospital({
+    ...hospital,
+    imageType: newValue,
+  });
+};
+const handleFileChange = (event) => {
+  const file = event.target.files[0];
+  setImageLoading(true);
+  if(file){
+    const fileRef = ref(storage, `hospital_logo/${file.name + Date.now()}`);
+    uploadBytes(fileRef, file).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        // Send the download URL to your server for storage in MongoDB
+        setHospital({
+          ...hospital,
+          image: url,
+        });
+        setImageLoading(false)
+      });
+    });
+  }
+};
+
   return (
     <div className="displaycard">
       <h5 style={{ fontSize: "50px", textTransform: "capitalize" }}>
@@ -213,11 +243,24 @@ const handleRemoveDoctor = (indexToRemove) => {
               <div className="row">
                 <div className="col-md-6 profile-left">
                   <img
-                    className="profile-image"
+                    className={`profile-image ${hospital?.imageType?"circle-image":""}`}
                     src={hospital?.image||image}
                     alt="hospital image"
                   />
                   <div>
+                  {hospitalId===savedUser?._id&&isEditing&&<div>
+                    <p>Select an image</p>
+                    <div className="hospital-image-input">
+                      <input className="col-md-12 p-2" type="file" name="pdf" id="pdf" disabled={imageLoading} onChange={handleFileChange}/>
+                    </div>
+                    <p>Select image type</p>
+                    <div>
+                      <label>  <input    type="radio"    value="circle"    checked={isCircle}    onChange={handleRadioChange}  />  Circle</label>
+                      <label>  <input type="radio" value="square" checked={!isCircle} onChange={handleRadioChange}  />  Square</label>
+                    <div>
+                  </div>
+                  </div>
+                  </div>}
                   <p>{((savedUser?._id===hospitalId&&hospital.about||isEditing))&&"About:"}</p>
                   {!isEditing&& <p>{hospital.about}</p>}
                   {(savedUser?._id===hospitalId&&isEditing)&&<input className="col-md-12 p-2" placeholder={hospital.about} value={hospital.about} name="about" onChange={handelChange}/>}
@@ -225,10 +268,10 @@ const handleRemoveDoctor = (indexToRemove) => {
                   
                 </div>
                 <div className="col-md-6">
-                <div className="py-2">
+                {isEditing&&<div className="py-2">
                   <p>name:{savedUser?._id===hospitalId&& isEditing&&<sup>*</sup>}</p>
                     {(savedUser?._id===hospitalId&&isEditing)&&<input className="col-md-12 p-2" placeholder={hospital.name} value={hospital.name} name="name" onChange={handelChange}/>}
-                  </div>
+                  </div>}
                   <div className="py-2">
                   <p>Email:{savedUser?._id===hospitalId&& isEditing&&<><sup>*</sup><sub className="">Editable after verification..</sub></>}</p>
                     {!isEditing&&<h4>{hospital.email}</h4>}
@@ -257,7 +300,7 @@ const handleRemoveDoctor = (indexToRemove) => {
                   </div>
                   <div className="py-2">
                     <p>{(((isEditing&&savedUser?._id===hospitalId)||hospital.website))?"Website:":""}</p>
-                    {!isEditing&&<h4>{hospital.website}</h4>}
+                    {!isEditing&&<h4><a href={hospital.website} target="_blank">{hospital.website}</a></h4>}
                     {(savedUser?._id===hospitalId&&isEditing)&&<input className="col-md-12 p-2" placeholder={hospital.website?hospital.website:"https://example.com"} value={hospital.website} name="website" onChange={handelChange}/>}
                   </div>
                 </div>
@@ -267,12 +310,12 @@ const handleRemoveDoctor = (indexToRemove) => {
             <div className="row my-2">
               {(((isEditing&&savedUser?._id===hospitalId)||hospital.services.length !== 0)) && (
                 <div className="col-md-6 my-2">
-                <div className="card p-3">
-                <h5>Services</h5>
+                <div className="card main-card p-3">
+                <h5 style={{fontSize:'2rem'}}>Services</h5>
                   <div className="row">
                     {hospital.services.map((content, index) => (
-                      <div className="col-md-3" key={index}>
-                        <div className="card">
+                      <div className="col-md-4 my-2" key={index}>
+                        <div className="card p-3">
                         {(savedUser?._id === hospitalId && isEditing) ? (
                         <div>
                           <input
@@ -316,12 +359,12 @@ const handleRemoveDoctor = (indexToRemove) => {
               )}
               {((isEditing&&savedUser?._id===hospitalId)||hospital.specializations.length !== 0) && (
                 <div className="col-md-6 my-2">
-                <div className="card p-3">
-                <h5>Specializations</h5>
+                <div className="card main-card p-3">
+                <h5 style={{fontSize:'2rem'}}>Specializations</h5>
                   <div className="row">
                     {hospital.specializations.map((content, index) => (
-                      <div className="col-md-3" key={index}>
-                        <div className="card">
+                      <div className="col-md-4 my-2" key={index}>
+                        <div className="card p-3">
                         {(savedUser?._id === hospitalId && isEditing) ? (
                         <div>
                           <input
@@ -366,12 +409,12 @@ const handleRemoveDoctor = (indexToRemove) => {
               )}
               {((isEditing&&savedUser?._id===hospitalId)||hospital.accreditations.length !== 0) && (
                 <div className="col-md-6 my-2">
-                <div className="card p-3">
-                <h5>Accreditations</h5>
+                <div className="card main-card p-3">
+                <h5 style={{fontSize:'2rem'}}>Accreditations</h5>
                   <div className="row">
                     {hospital.accreditations.map((content, index) => (
-                      <div className="col-md-3" key={index}>
-                        <div className="card">
+                      <div className="col-md-4 my-2" key={index}>
+                        <div className="card p-3">
                         {(savedUser?._id === hospitalId && isEditing) ? (
                         <div>
                           <input
@@ -416,12 +459,12 @@ const handleRemoveDoctor = (indexToRemove) => {
               )}
               {((isEditing&&savedUser?._id===hospitalId)||hospital.insuranceAccepted.length !== 0) && (
                 <div className="col-md-6 my-2">
-                <div className="card p-3">
-                <h5>insuranceAccepted</h5>
+                <div className="card main-card p-3">
+                <h5 style={{fontSize:'2rem'}}>insuranceAccepted</h5>
                   <div className="row">
                     {hospital.insuranceAccepted.map((content, index) => (
-                      <div className="col-md-3" key={index}>
-                        <div className="card">
+                      <div className="col-md-4 my-2" key={index}>
+                        <div className="card p-3">
                         {(savedUser?._id === hospitalId && isEditing) ? (
                         <div>
                           <input
@@ -479,7 +522,7 @@ const handleRemoveDoctor = (indexToRemove) => {
                     </thead>
                     <tbody>
                       {hospital.operatingHours.map((operatingHour, index) => (
-                        <tr key={index}>
+                        <tr key={index} className={index % 2 === 0 ? 'even-row' : 'odd-row'}>
                           <td>{index + 1}</td>
                           <td>{operatingHour.day}</td>
                           <td>{operatingHour.time}</td>
@@ -526,8 +569,8 @@ const handleRemoveDoctor = (indexToRemove) => {
             {((isEditing&&savedUser?._id===hospitalId)||hospital.doctors.length !== 0) &&(<div className="doctors card p-3 m-2">
             <h5 style={{fontSize:'2rem'}}>Our Doctors</h5>
               <div className="row">
-                {hospital.doctors.map((doctor,index)=>(<div className="col-md-3">
-                  <div className="card">
+                {hospital.doctors.map((doctor,index)=>(<div className="col-md-3 my-2">
+                  <div className="card p-3">
                     <h5>{doctor.name}</h5>
                     <h5>{doctor.specialty}</h5>
                     {(savedUser?._id === hospitalId && isEditing) && (<>
